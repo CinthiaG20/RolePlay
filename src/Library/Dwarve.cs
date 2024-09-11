@@ -25,7 +25,7 @@ public class Dwarve
         set { health = value;}
     }
     
-    public void AddItem(object item)        //metodo añadir item
+    public void AddItem(Item item)        //metodo añadir item
     {
         if (item != null)
         {
@@ -37,7 +37,7 @@ public class Dwarve
         }
     }
 
-    public void RemoveItem(object item)             //metodo quitar item
+    public void RemoveItem(Item item)             //metodo quitar item
     {
         if (item != null)
         {
