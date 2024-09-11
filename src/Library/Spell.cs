@@ -8,25 +8,17 @@ public class Spell
         get { return name; }
         set { name = value; }
     }
-
-    private int attackValue;
-    public int AttackValue
+    
+    private int damage;
+    public int Damage
     {
-        get { return attackValue; }
-        set { attackValue = value; }
-    }
-
-    private int defenseValue;
-    public int DefenseValue
-    {
-        get { return defenseValue; }
-        set { defenseValue = value; }
+        get { return damage; }
+        set { damage = value; }
     }
 
     public Spell(string name, int attackValue, int defenseValue)
     {
         this.Name = name;
-        this.AttackValue = attackValue;
-        this.DefenseValue = defenseValue;
+        this.Damage = attackValue; ;
     }
 }
