@@ -37,7 +37,25 @@ public class Wizard
             Console.WriteLine("Ese item no existe");
         }
     }
-
+    public int TotalDamage()                //Metodo Daño total
+    {
+        int totalatk = 0;       //inicia una variabe
+        foreach (Item item in this.items)
+        {
+            totalatk += item.AttackValue;
+        }                               //suma al ataque total todos los valores de ataque de los items
+        return totalatk;        //devuelve el total
+    }
+    
+    public int TotalDefense()               //Metodo Daño total
+    {
+        int totaldef = 0;       //inicia una variable
+        foreach (Item item in this.items)
+        {
+            totaldef += item.DefenseValue;
+        }                          
+        return totaldef;        //devuelve la defensa total
+    }
 
     public string GetInfo()
     {
@@ -46,6 +64,8 @@ public class Wizard
         {
             info += $"- {item.Name} (Ataque: {item.AttackValue}, Defensa: {item.DefenseValue})\n";
         }
+        info += $"Total Ataque: {this.TotalDamage()}\n";
+        info += $"Total Defensa: {this.TotalDefense()}\n";
         return info;
     }
 }
