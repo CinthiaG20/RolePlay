@@ -2,13 +2,13 @@
 
 using System.Collections;
 
-public class Wizards
+public class Wizard
 {
     private string name;
     private int vida;
     private ArrayList items = new ArrayList();
 
-    public Wizards(string name, int vida)
+    public Wizard(string name, int vida)
     {
         this.name = name;
         this.vida = vida;
