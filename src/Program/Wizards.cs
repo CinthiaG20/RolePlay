@@ -14,7 +14,7 @@ public class Wizard
         this.vida = vida;
     }
 
-    public void AddItem(object item)
+    public void AddItem(Item item)
     {
         if (item != null)
         {
@@ -26,7 +26,7 @@ public class Wizard
         }
     }
 
-    public void RemoveItem(object item)
+    public void RemoveItem(Item item)
     {
         if (item != null)
         {
@@ -38,16 +38,14 @@ public class Wizard
         }
     }
 
-    public Item GetItemByName(string nombre)
+
+    public string GetInfo()
     {
+        string info = $"Nombre: {this.name}, Vida: {this.vida}\nItems:\n";
         foreach (Item item in this.items)
         {
-            if (item.Name == nombre)
-            {
-                return item;
-            }
+            info += $"- {item.Name} (Ataque: {item.AttackValue}, Defensa: {item.DefenseValue})\n";
         }
-
-        return null;
+        return info;
     }
 }
