@@ -69,6 +69,20 @@ public class Wizard
         Console.WriteLine($"{this.name} ataca a {target.name} y causa {damage} de daño.");
     }
 
+    public void UseSpell(Spell spell, Wizard target)
+    {
+        if (this.spellBook.ContainsSpell(spell))
+        {
+            int damage = spell.AttackValue;
+            target.ReceiveDamage(damage);
+            Console.WriteLine($"{this.name} usa {spell.Name} en {target.name} y causa {damage} de daño.");
+        }
+        else
+        {
+            Console.WriteLine($"{this.name} no tiene el hechizo {spell.Name}.");
+        }
+    }
+
     public void ReceiveDamage(int damage)
     {
         this.vida -= damage;

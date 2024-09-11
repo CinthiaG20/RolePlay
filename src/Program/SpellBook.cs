@@ -30,6 +30,11 @@ public class SpellBook
         }
     }
 
+    public bool ContainsSpell(Spell spell)
+    {
+        return this.spells.Contains(spell);
+    }
+
     public string GetSpellsInfo()
     {
         string info = "Hechizos:\n";
