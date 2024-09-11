@@ -29,6 +29,4 @@ mago1.AddItem(bastonGigante);
 mago1.AddItem(capain);
 
 mago.UseSpell(bolaDeFuego, mago1);
-
-Console.WriteLine(mago.GetInfo());
-Console.WriteLine(mago1.GetInfo());
+mago1.UseSpell(Nevada, mago);

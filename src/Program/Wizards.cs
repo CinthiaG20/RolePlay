@@ -74,8 +74,8 @@ public class Wizard
         if (this.spellBook.ContainsSpell(spell))
         {
             int damage = spell.AttackValue;
-            target.ReceiveDamage(damage);
             Console.WriteLine($"{this.name} usa {spell.Name} en {target.name} y causa {damage} de daño.");
+            target.ReceiveDamage(damage);
         }
         else
         {
@@ -87,7 +87,7 @@ public class Wizard
     {
         this.vida -= damage;
         if (this.vida < 0) this.vida = 0;
-        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.vida}");
+        Console.WriteLine($"{this.name}  Vida restante: {this.vida}");
     }
 
     public void Heal()
