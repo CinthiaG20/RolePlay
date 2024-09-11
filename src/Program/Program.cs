@@ -6,7 +6,7 @@ public class Program
 {
     static void Main()
     {
-        Dwarves p1 = Dwarves("bogar", 10);
+        Dwarve p1 = Dwarve ("bogar", 10);
         Console.WriteLine(p1.Health);
         Console.WriteLine(p1.Name);
         Console.WriteLine(p1.MaxHealth);
