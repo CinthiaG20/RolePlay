@@ -1,32 +1,32 @@
-namespace Program;
+namespace Library;
 
-public class Items
+public class Item
 {
     private string name;
     public string Name
     {
-        get { return name;}
-        set { name = value;}
-    }
-    
-    
-    private int atk;
-    public int Atk
-    {
-        get { return atk;}
-        set { atk = value;}
-    }
-    private int def;
-    public int Def
-    {
-        get { return def;}
-        set { def = value;}
+        get { return name; }
+        set { name = value; }
     }
 
-    public Item(string name, int atk, int def)
+    private int attackValue;
+    public int AttackValue
+    {
+        get { return attackValue; }
+        set { attackValue = value; }
+    }
+
+    private int defenseValue;
+    public int DefenseValue
+    {
+        get { return defenseValue; }
+        set { defenseValue = value; }
+    }
+
+    public Item(string name, int attackValue, int defenseValue)
     {
         this.Name = name;
-        this.Atk = atk;
-        this.Def = def;
+        this.AttackValue = attackValue;
+        this.DefenseValue = defenseValue;
     }
 }
