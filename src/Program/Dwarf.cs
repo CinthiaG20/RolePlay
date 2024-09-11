@@ -2,20 +2,18 @@
 
 using System.Collections;
 
-public class Wizard
+public class Dwarf
 {
     private string name;
     private int vida;
     private int initialVida;
     private ArrayList items = new ArrayList();
-    private SpellBook spellBook;
 
-    public Wizard(string name, int vida, SpellBook spellBook)
+    public Dwarf(string name, int vida)
     {
         this.name = name;
         this.vida = vida;
         this.initialVida = vida;
-        this.spellBook = spellBook; 
     }
 
     public void AddItem(Item item)
@@ -62,7 +60,7 @@ public class Wizard
         return totaldef;
     }
 
-    public void Attack(Wizard target)
+    public void Attack(Dwarf target)
     {
         int damage = this.TotalDamage();
         target.ReceiveDamage(damage);
@@ -91,7 +89,6 @@ public class Wizard
         }
         info += $"Total Ataque: {this.TotalDamage()}\n";
         info += $"Total Defensa: {this.TotalDefense()}\n";
-        info += this.spellBook.GetSpellsInfo();
         return info;
     }
 }
