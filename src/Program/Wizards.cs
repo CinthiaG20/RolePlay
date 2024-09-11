@@ -6,12 +6,14 @@ public class Wizard
 {
     private string name;
     private int vida;
+    private int initialVida;
     private ArrayList items = new ArrayList();
 
     public Wizard(string name, int vida)
     {
         this.name = name;
         this.vida = vida;
+        this.initialVida = vida;
     }
 
     public void AddItem(Item item)
@@ -56,7 +58,25 @@ public class Wizard
         }                          
         return totaldef;        //devuelve la defensa total
     }
+    public void Attack(Wizard target)
+    {
+        int damage = this.TotalDamage();
+        target.ReceiveDamage(damage);
+        Console.WriteLine($"{this.name} ataca a {target.name} y causa {damage} de daño.");
+    }
 
+    public void ReceiveDamage(int damage)
+    {
+        this.vida -= damage;
+        if (this.vida < 0) this.vida = 0; // Ensure vida doesn't go below 0
+        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.vida}");
+    }
+
+    public void Heal()
+    {
+        this.vida = this.initialVida;
+        Console.WriteLine($"{this.name} ha sido curado. Vida restaurada a: {this.vida}");
+    }
     public string GetInfo()
     {
         string info = $"Nombre: {this.name}, Vida: {this.vida}\nItems:\n";
