@@ -16,7 +16,7 @@ public class Spell
         set { damage = value; }
     }
 
-    public Spell(string name, int attackValue, int defenseValue)
+    public Spell(string name, int attackValue)
     {
         this.Name = name;
         this.Damage = attackValue; ;

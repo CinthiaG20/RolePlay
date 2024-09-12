@@ -2,19 +2,34 @@
 
 using System.Collections;
 
-public class Wizards
+public class Wizard : Chara
 {
     private string name;
-    private int vida;
+    private int health;
+    private int maxhealth;
     private ArrayList items = new ArrayList();
 
-    public Wizards(string name, int vida)
+    public Wizard(string name, int vida)
     {
         this.name = name;
-        this.vida = vida;
+        this.health = vida;
+        this.maxhealth = vida;
     }
 
-    public void AddItem(object item)
+    public string Name
+    {
+        get { return name;}
+        set { name = value; }
+    }
+    public int Health
+    {
+        get { return health;}
+        set { health = value; }
+    }
+    
+    
+    
+    public void AddItem(Item item)
     {
         if (item != null)
         {
@@ -26,7 +41,7 @@ public class Wizards
         }
     }
 
-    public void RemoveItem(object item)
+    public void RemoveItem(Item item)
     {
         if (item != null)
         {
@@ -37,17 +52,47 @@ public class Wizards
             Console.WriteLine("Ese item no existe");
         }
     }
-
-    public Item GetItemByName(string nombre)
+    public int TotalDamage()                //Metodo Daño total
     {
+        int totalatk = 0;       //inicia una variabe
         foreach (Item item in this.items)
         {
-            if (item.Name == nombre)
-            {
-                return item;
-            }
-        }
+            totalatk += item.AttackValue;
+        }                               //suma al ataque total todos los valores de ataque de los items
+        return totalatk;        //devuelve el total
+    }
+    
+    public int TotalDefense()               //Metodo Daño total
+    {
+        int totaldef = 0;       //inicia una variable
+        foreach (Item item in this.items)
+        {
+            totaldef += item.DefenseValue;
+        }                          
+        return totaldef;        //devuelve la defensa total
+    }
 
-        return null;
+    public void ReceiveDamage(int damage)
+    {
+        this.health -= damage;
+        if (this.health < 0) this.health = 0; // Ensure vida doesn't go below 0
+        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.health}");
+    }
+
+    public void Heal()
+    {
+        this.health = this.maxhealth;
+        Console.WriteLine($"{this.name} ha sido curado. Vida restaurada a: {this.health}");
+    }
+    public string GetInfo()
+    {
+        string info = $"Nombre: {this.name}, Vida: {this.health}\nItems:\n";
+        foreach (Item item in this.items)
+        {
+            info += $"- {item.Name} (Ataque: {item.AttackValue}, Defensa: {item.DefenseValue})\n";
+        }
+        info += $"Total Ataque: {this.TotalDamage()}\n";
+        info += $"Total Defensa: {this.TotalDefense()}\n";
+        return info;
     }
 }
