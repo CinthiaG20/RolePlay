@@ -26,9 +26,6 @@ public class Wizard : Chara
         get { return health;}
         set { health = value; }
     }
-    
-    
-    
     public void AddItem(Item item)
     {
         if (item != null)
@@ -40,7 +37,6 @@ public class Wizard : Chara
             Console.WriteLine("Ese item no existe");
         }
     }
-
     public void RemoveItem(Item item)
     {
         if (item != null)
@@ -72,11 +68,18 @@ public class Wizard : Chara
         return totaldef;        //devuelve la defensa total
     }
 
+    public void Attack(Chara target)
+    {
+        int damage = this.TotalDamage();
+        target.ReceiveDamage(damage);
+        Console.WriteLine($"{this.Name} ataca a {target.Name} y causa {damage} de daño.");
+    }
+
     public void ReceiveDamage(int damage)
     {
-        this.health -= damage;
-        if (this.health < 0) this.health = 0; // Ensure vida doesn't go below 0
-        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.health}");
+        this.Health -= damage;
+        if (this.Health < 0) this.Health = 0; // Ensure vida doesn't go below 0
+        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.Health}");
     }
 
     public void Heal()
@@ -94,5 +97,24 @@ public class Wizard : Chara
         info += $"Total Ataque: {this.TotalDamage()}\n";
         info += $"Total Defensa: {this.TotalDefense()}\n";
         return info;
+    }
+
+    public void Cast(Spell castedspell, Chara target)
+    {
+        foreach (object item in items)
+        {
+            if (item is SpellTome)
+            {
+                foreach (Spell spell in item)
+                {
+                    if (castedspell == spell)
+                    {
+                        target.Health -= castedspell.Damage;
+                        if (target.Health < 0) target.Health = 0; 
+                        Console.WriteLine($"{target.Name} recibe {spell.Damage} de daño. Vida restante: {target.Health}");
+                    }
+                }
+            }
+        }
     }
 }
