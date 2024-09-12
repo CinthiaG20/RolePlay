@@ -16,12 +16,8 @@ Console.WriteLine(mago1.GetInfo());
 mago.Attack(mago1);
 mago1.Heal();
 
-Dwarve p1 = Dwarve ("bogar", 10);
-Console.WriteLine(p1.Health);
-Console.WriteLine(p1.Name);
-Console.WriteLine(p1.MaxHealth);
-Console.WriteLine(p1.TotalDamage());
-Console.WriteLine(p1.TotalDefense());
-        
+Dwarf enano1 = new Dwarf ("bogar", 10);
+Console.WriteLine(enano1.GetInfo());
+
 
 

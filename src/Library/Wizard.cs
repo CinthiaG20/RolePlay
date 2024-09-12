@@ -2,20 +2,30 @@
 
 using System.Collections;
 
-public class Wizard
+public class Wizard : Chara
 {
     private string name;
-    private int vida;
-    private int initialVida;
+    private int health;
+    private int maxhealth;
     private ArrayList items = new ArrayList();
 
     public Wizard(string name, int vida)
     {
         this.name = name;
-        this.vida = vida;
-        this.initialVida = vida;
+        this.health = vida;
+        this.maxhealth = vida;
     }
 
+    public string Name
+    {
+        get { return name;}
+        set { name = value; }
+    }
+    public int Health
+    {
+        get { return health;}
+        set { health = value; }
+    }
     public void AddItem(Item item)
     {
         if (item != null)
@@ -27,7 +37,6 @@ public class Wizard
             Console.WriteLine("Ese item no existe");
         }
     }
-
     public void RemoveItem(Item item)
     {
         if (item != null)
@@ -58,28 +67,29 @@ public class Wizard
         }                          
         return totaldef;        //devuelve la defensa total
     }
-    public void Attack(Wizard target)
+
+    public void Attack(Chara target)
     {
         int damage = this.TotalDamage();
         target.ReceiveDamage(damage);
-        Console.WriteLine($"{this.name} ataca a {target.name} y causa {damage} de daño.");
+        Console.WriteLine($"{this.Name} ataca a {target.Name} y causa {damage} de daño.");
     }
 
     public void ReceiveDamage(int damage)
     {
-        this.vida -= damage;
-        if (this.vida < 0) this.vida = 0; // Ensure vida doesn't go below 0
-        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.vida}");
+        this.Health -= damage;
+        if (this.Health < 0) this.Health = 0; // Ensure vida doesn't go below 0
+        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.Health}");
     }
 
     public void Heal()
     {
-        this.vida = this.initialVida;
-        Console.WriteLine($"{this.name} ha sido curado. Vida restaurada a: {this.vida}");
+        this.health = this.maxhealth;
+        Console.WriteLine($"{this.name} ha sido curado. Vida restaurada a: {this.health}");
     }
     public string GetInfo()
     {
-        string info = $"Nombre: {this.name}, Vida: {this.vida}\nItems:\n";
+        string info = $"Nombre: {this.name}, Vida: {this.health}\nItems:\n";
         foreach (Item item in this.items)
         {
             info += $"- {item.Name} (Ataque: {item.AttackValue}, Defensa: {item.DefenseValue})\n";

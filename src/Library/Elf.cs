@@ -3,21 +3,23 @@ using System.Collections;
 
 namespace Library;
 
-public class Elf
+public class Elf : Chara
 {
     private string name;            //atributo nombre
     private int health;
     private int maxhealth;
     private ArrayList items = new ArrayList();
+    
+    public Elf(string name, int maxhealth)          //metodo constructor
+    {
+        this.Name = name;                   //toma el string para el nombre
+        this.maxhealth = maxhealth;         //toma el entero dado para que sea la vida maxima
+        this.Health = maxhealth;            //le da el mismo valor a la vida actual
+    }
     public string Name              //metodo para poner o saber nombre
     {
         get { return name;}
         set { name = value;}
-    }
-    public int MaxHealth               //metodo vida maxima
-    {
-        get { return maxhealth;}
-        set { maxhealth = value;}
     }
     public int Health               //metodo vida
     {
@@ -81,16 +83,33 @@ public class Elf
         }                          
         return totaldef;        //devuelve la defensa total
     }
+    public void Attack(Chara target)
+    {
+        int damage = this.TotalDamage();
+        target.ReceiveDamage(damage);
+        Console.WriteLine($"{this.Name} ataca a {target.Name} y causa {damage} de daño.");
+    }
 
+    public void ReceiveDamage(int damage)
+    {
+        this.Health -= damage;
+        if (this.Health < 0) this.Health = 0; // Ensure vida doesn't go below 0
+        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.Health}");
+    }
     public void Heal()          //metodo para curar
     {
         health = maxhealth;
     }
-
-    public Elf(string name, int maxhealth)          //metodo constructor
+    
+    public string GetInfo()
     {
-        this.Name = name;                   //toma el string para el nombre
-        this.MaxHealth = maxhealth;         //toma el entero dado para que sea la vida maxima
-        this.Health = maxhealth;            //le da el mismo valor a la vida actual
+        string info = $"Nombre: {this.name}, Vida: {this.health}\nItems:\n";
+        foreach (Item item in this.items)
+        {
+            info += $"- {item.Name} (Ataque: {item.AttackValue}, Defensa: {item.DefenseValue})\n";
+        }
+        info += $"Total Ataque: {this.TotalDamage()}\n";
+        info += $"Total Defensa: {this.TotalDefense()}\n";
+        return info;
     }
 }
