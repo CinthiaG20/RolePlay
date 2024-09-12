@@ -1,4 +1,4 @@
-﻿using Library;
+using Library;
 
 Wizard mago = new Wizard("Gandalf", 100);
 Item baston = new Item("Bastón Mágico", 10, 3);
@@ -15,5 +15,13 @@ Console.WriteLine(mago.GetInfo());
 Console.WriteLine(mago1.GetInfo());
 mago.Attack(mago1);
 mago1.Heal();
+
+Dwarve p1 = Dwarve ("bogar", 10);
+Console.WriteLine(p1.Health);
+Console.WriteLine(p1.Name);
+Console.WriteLine(p1.MaxHealth);
+Console.WriteLine(p1.TotalDamage());
+Console.WriteLine(p1.TotalDefense());
+        
 
 

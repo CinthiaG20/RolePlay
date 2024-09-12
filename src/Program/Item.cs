@@ -5,28 +5,28 @@ public class Item
     private string name;
     public string Name
     {
-        get { return name; }
-        set { name = value; }
+        get { return name;}
+        set { name = value;}
     }
-
-    private int attackValue;
-    public int AttackValue
+    
+    
+    private int atk;
+    public int Atk
     {
-        get { return attackValue; }
-        set { attackValue = value; }
+        get { return atk;}
+        set { atk = value;}
     }
-
-    private int defenseValue;
-    public int DefenseValue
+    private int def;
+    public int Def
     {
-        get { return defenseValue; }
-        set { defenseValue = value; }
+        get { return def;}
+        set { def = value;}
     }
 
-    public Item(string name, int attackValue, int defenseValue)
+    public Item(string name, int atk, int def)
     {
         this.Name = name;
-        this.AttackValue = attackValue;
-        this.DefenseValue = defenseValue;
+        this.Atk = atk;
+        this.Def = def;
     }
 }
