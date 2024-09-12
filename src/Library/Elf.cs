@@ -1,0 +1,96 @@
+using System.Security.Cryptography;
+using System.Collections;
+
+namespace Library;
+
+public class Elf
+{
+    private string name;            //atributo nombre
+    private int health;
+    private int maxhealth;
+    private ArrayList items = new ArrayList();
+    public string Name              //metodo para poner o saber nombre
+    {
+        get { return name;}
+        set { name = value;}
+    }
+    public int MaxHealth               //metodo vida maxima
+    {
+        get { return maxhealth;}
+        set { maxhealth = value;}
+    }
+    public int Health               //metodo vida
+    {
+        get { return health;}
+        set { health = value;}
+    }
+    
+    public void AddItem(Item item)        //metodo añadir item
+    {
+        if (item != null)
+        {
+            this.items.Add(item);
+        }
+        else
+        {
+            Console.WriteLine("Ese item no existe");
+        }
+    }
+
+    public void RemoveItem(Item item)             //metodo quitar item
+    {
+        if (item != null)
+        {
+            this.items.Remove(item);
+        }
+        else
+        {
+            Console.WriteLine("Ese item no existe");
+        }
+    }
+
+    public Item GetItemByName(string nombre)        //metodo buscar item por nombre
+    {
+        foreach (Item item in this.items)
+        {
+            if (item.Name == nombre)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
+    
+    public int TotalDamage()                //Metodo Daño total
+    {
+        int totalatk = 0;       //inicia una variabe
+        foreach (Item item in this.items)
+        {
+            totalatk += item.AttackValue;
+        }                               //suma al ataque total todos los valores de ataque de los items
+        return totalatk;        //devuelve el total
+    }
+    
+    public int TotalDefense()               //Metodo Daño total
+    {
+        int totaldef = 0;       //inicia una variable
+        foreach (Item item in this.items)
+        {
+            totaldef += item.DefenseValue;
+        }                          
+        return totaldef;        //devuelve la defensa total
+    }
+
+    public void Heal()          //metodo para curar
+    {
+        health = maxhealth;
+    }
+
+    public Elf(string name, int maxhealth)          //metodo constructor
+    {
+        this.Name = name;                   //toma el string para el nombre
+        this.MaxHealth = maxhealth;         //toma el entero dado para que sea la vida maxima
+        this.Health = maxhealth;            //le da el mismo valor a la vida actual
+    }
+}
