@@ -97,9 +97,10 @@ public class Elf : Chara
         if (this.Health < 0) this.Health = 0; //si la vida es menor a 0, se asigna 0
         Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.Health}"); //se imprime un mensaje
     }
-    public void Heal()          //metodo para curar
+    public void Heal() //metodo para curar
     {
-        health = maxhealth;
+        this.health = this.maxhealth; //se asigna la vida maxima a la vida
+        Console.WriteLine($"{this.name} ha sido curado. Vida restaurada a: {this.health}"); //se imprime un mensaje
     }
     
     public string GetInfo()

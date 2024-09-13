@@ -47,3 +47,4 @@ mago.UseSpell(bolaDeFuego, enano); //gandalf usa el hechizo Bola de Fuego contra
 mago1.UseSpell(Nevada, mago); //Sauron usa el hechizo Tormenta de Nieve contra Gandalf
 enano.Attack(elfo); //Gimli ataca a Legolas
 elfo.Attack(mago1); //Legolas ataca a Sauron
+enano.Heal();
