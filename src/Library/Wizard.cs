@@ -8,22 +8,24 @@ public class Wizard : Chara
     private int health;
     private int maxhealth;
     private ArrayList items = new ArrayList();
+    private SpellTome spellTome;
 
-    public Wizard(string name, int vida)
+    public Wizard(string name, int vida, SpellTome spellTome)
     {
         this.name = name;
         this.health = vida;
         this.maxhealth = vida;
+        this.spellTome = spellTome;
     }
 
     public string Name
     {
-        get { return name;}
+        get { return name; }
         set { name = value; }
     }
     public int Health
     {
-        get { return health;}
+        get { return health; }
         set { health = value; }
     }
     public void AddItem(Item item)
@@ -48,24 +50,24 @@ public class Wizard : Chara
             Console.WriteLine("Ese item no existe");
         }
     }
-    public int TotalDamage()                //Metodo Daño total
+    public int TotalDamage()
     {
-        int totalatk = 0;       //inicia una variabe
+        int totalatk = 0;
         foreach (Item item in this.items)
         {
             totalatk += item.AttackValue;
-        }                               //suma al ataque total todos los valores de ataque de los items
-        return totalatk;        //devuelve el total
+        }
+        return totalatk;
     }
     
-    public int TotalDefense()               //Metodo Daño total
+    public int TotalDefense()
     {
-        int totaldef = 0;       //inicia una variable
+        int totaldef = 0;
         foreach (Item item in this.items)
         {
             totaldef += item.DefenseValue;
-        }                          
-        return totaldef;        //devuelve la defensa total
+        }
+        return totaldef;
     }
 
     public void Attack(Chara target)
@@ -75,10 +77,23 @@ public class Wizard : Chara
         Console.WriteLine($"{this.Name} ataca a {target.Name} y causa {damage} de daño.");
     }
 
+    public void UseSpell(Spell spell, Chara target)
+    {
+        if (this.spellTome.ContainsSpell(spell))
+        {
+            target.ReceiveDamage(spell.Damage);
+            Console.WriteLine($"{this.name} usa {spell.Name} y causa {spell.Damage} de daño.");
+        }
+        else
+        {
+            Console.WriteLine($"{this.name} no conoce el hechizo {spell.Name}.");
+        }
+    }
+
     public void ReceiveDamage(int damage)
     {
         this.Health -= damage;
-        if (this.Health < 0) this.Health = 0; // Ensure vida doesn't go below 0
+        if (this.Health < 0) this.Health = 0;
         Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.Health}");
     }
 
@@ -96,6 +111,7 @@ public class Wizard : Chara
         }
         info += $"Total Ataque: {this.TotalDamage()}\n";
         info += $"Total Defensa: {this.TotalDefense()}\n";
+        info += this.spellTome.GetSpellsInfo();
         return info;
     }
 }

@@ -1,14 +1,20 @@
 using System.Collections;
+using System.Collections.Generic;
+
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Library;
 
-public class SpellTome : Item
+public class SpellTome : Item, IEnumerable<Spell>
 {
-    // Lista de hechizos usando List<T>
     private List<Spell> spells = new List<Spell>();
 
-    //private ArrayList spells = new ArrayList();
-    
+    public SpellTome(string name, int attackValue, int defenseValue) :
+        base(name, attackValue, defenseValue)
+    {
+    }
+
     public void AddSpell(Spell spell)
     {
         if (spell != null)
@@ -33,13 +39,28 @@ public class SpellTome : Item
         }
     }
 
-    public SpellTome(string name, int attackValue, int defenseValue) :
-        base(name,attackValue,defenseValue)
+    public bool ContainsSpell(Spell spell)
     {
+        return this.spells.Contains(spell);
     }
-    
-    public IEnumerator GetEnumerator() 
-    { 
-        return this.GetEnumerator(); 
+
+    public string GetSpellsInfo()
+    {
+        string info = "Hechizos:\n";
+        foreach (Spell spell in this.spells)
+        {
+            info += $"- {spell.Name} (Ataque: {spell.Damage})\n";
+        }
+        return info;
+    }
+
+    public IEnumerator<Spell> GetEnumerator()
+    {
+        return this.spells.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return this.GetEnumerator();
     }
 }

@@ -7,7 +7,8 @@ public class WizardsTest
     [Test]
     public void Test1()     // Wizard
     {
-        Wizard mago = new Wizard("Gandalf", 100);
+        SpellTome spellTome = new SpellTome("Tome", 0, 0);
+        Wizard mago = new Wizard("Gandalf", 100, spellTome);
         
         Assert.That(mago.Name, Is.EqualTo("Gandalf"));
         Assert.That(mago.Health, Is.EqualTo(100));
@@ -26,25 +27,27 @@ public class WizardsTest
     [Test]
     public void Test3()     // GetInfo | AddItem | RemoveItem
     {
-        Wizard mago = new Wizard("Gandalf", 100);
+        SpellTome spellTome = new SpellTome("Tome", 0, 0);
+        Wizard mago = new Wizard("Gandalf", 100, spellTome);
         Item baston = new Item("Bastón Mágico", 10, 3);
         mago.AddItem(baston);
         
         string result = mago.GetInfo();
-        string expected = "Nombre: Gandalf, Vida: 100\\nItems:\\n- Bastón Mágico (Ataque: 10, Defensa: 3)\\nTotal Ataque: 10\\nTotal Defensa: 13\n";
+        string expected = "Nombre: Gandalf, Vida: 100\nItems:\n- Bastón Mágico (Ataque: 10, Defensa: 3)\nTotal Ataque: 10\nTotal Defensa: 13\nHechizos:\n";
         Assert.That(result, Is.EqualTo(expected));
         
         mago.RemoveItem(baston);
         
         result = mago.GetInfo();
-        expected = "Nombre: Gandalf, Vida: 100\\nItems:\\nTotal Ataque: 10\\nTotal Defensa: 13\n";
+        expected = "Nombre: Gandalf, Vida: 100\nItems:\nTotal Ataque: 0\nTotal Defensa: 0\nHechizos:\n";
         Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
     public void Test4()     // Heal
     {
-        Wizard mago = new Wizard("Gandalf", 100);
+        SpellTome spellTome = new SpellTome("Tome", 0, 0);
+        Wizard mago = new Wizard("Gandalf", 100, spellTome);
         mago.Health = 55;
         
         Assert.That(mago.Health, Is.EqualTo(55));
@@ -57,12 +60,17 @@ public class WizardsTest
     [Test]
     public void Test5()     // TotalDamage | TotalDefense
     {
-        Wizard mago1 = new Wizard("Sauron", 100);
+        SpellTome spellTome = new SpellTome("Tome", 0, 0);
+        Wizard mago1 = new Wizard("Sauron", 100, spellTome);
         Item bastonigneo = new Item("Bastón de Fuego", 10, 3);
         Item amuleto = new Item("Amuleto mistico", 5, 5);
         Item capain = new Item("Capa de Sigilo", 0, 10);
         
+        mago1.AddItem(bastonigneo);
+        mago1.AddItem(amuleto);
+        mago1.AddItem(capain);
+        
         Assert.That(mago1.TotalDamage(), Is.EqualTo(15));
         Assert.That(mago1.TotalDefense(), Is.EqualTo(18));
     }
-}
+}   
