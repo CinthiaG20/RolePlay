@@ -73,4 +73,18 @@ public class WizardsTest
         Assert.That(mago1.TotalDamage(), Is.EqualTo(15));
         Assert.That(mago1.TotalDefense(), Is.EqualTo(18));
     }
-}   
+
+    [Test]
+    public void Test6()     // UseSpell
+    {
+        Spell bolaDeFuego = new Spell("Bola de Fuego", 20);
+        SpellTome spellTome = new SpellTome("Tome", 0, 0);
+        spellTome.AddSpell(bolaDeFuego);
+        Wizard mago = new Wizard("Gandalf", 100, spellTome);
+        Dwarf enano = new Dwarf("Gimli", 100);
+
+        mago.UseSpell(bolaDeFuego, enano);
+
+        Assert.That(enano.Health, Is.EqualTo(80));
+    }
+}
