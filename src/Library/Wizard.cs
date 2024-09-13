@@ -72,16 +72,17 @@ public class Wizard : Chara //se crea la clase Wizard que implementa la interfaz
     public void Attack(Chara target) //metodo para atacar
     {
         int damage = this.TotalDamage(); //se calcula el daño total
-        target.ReceiveDamage(damage);   //se llama al metodo ReceiveDamage de la clase Chara
         Console.WriteLine($"{this.Name} ataca a {target.Name} y causa {damage} de daño."); //se imprime un mensaje
+        target.ReceiveDamage(damage);   //se llama al metodo ReceiveDamage de la clase Chara
+       
     }
 
     public void UseSpell(Spell spell, Chara target) //metodo para usar hechizo
     {
         if (this.spellTome.ContainsSpell(spell)) //si el hechizo esta en el SpellTome
         {
-            target.ReceiveDamage(spell.Damage); //se llama al metodo ReceiveDamage de la clase Chara
             Console.WriteLine($"{this.name} usa {spell.Name} y causa {spell.Damage} de daño."); //se imprime un mensaje del nombre del mago y del hechizo y el daño
+            target.ReceiveDamage(spell.Damage); //se llama al metodo ReceiveDamage de la clase Chara
         }
         else
         {
