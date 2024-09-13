@@ -83,22 +83,24 @@ public class Elf : Chara
         }                          
         return totaldef;        //devuelve la defensa total
     }
-    public void Attack(Chara target)
+    public void Attack(Chara target) //metodo para atacar
     {
-        int damage = this.TotalDamage();
-        target.ReceiveDamage(damage);
-        Console.WriteLine($"{this.Name} ataca a {target.Name} y causa {damage} de daño.");
+        int damage = this.TotalDamage(); //se calcula el daño total
+        Console.WriteLine($"{this.Name} ataca a {target.Name} y causa {damage} de daño."); //se imprime un mensaje
+        target.ReceiveDamage(damage);   //se llama al metodo ReceiveDamage de la clase Chara
+       
     }
 
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(int damage) //metodo para recibir daño
     {
-        this.Health -= damage;
-        if (this.Health < 0) this.Health = 0; // Ensure vida doesn't go below 0
-        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.Health}");
+        this.Health -= damage; //se resta el daño a la vida
+        if (this.Health < 0) this.Health = 0; //si la vida es menor a 0, se asigna 0
+        Console.WriteLine($"{this.name} recibe {damage} de daño. Vida restante: {this.Health}"); //se imprime un mensaje
     }
-    public void Heal()          //metodo para curar
+    public void Heal() //metodo para curar
     {
-        health = maxhealth;
+        this.health = this.maxhealth; //se asigna la vida maxima a la vida
+        Console.WriteLine($"{this.name} ha sido curado. Vida restaurada a: {this.health}"); //se imprime un mensaje
     }
     
     public string GetInfo()
