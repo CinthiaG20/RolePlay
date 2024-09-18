@@ -15,7 +15,7 @@ public class DwarfTest
     [Test]
     public void TestItem()     // Item
     {
-        Item martillo = new Item("Martillo", 15, 10);
+        IItem martillo = new IItem("Martillo", 15, 10);
 
         Assert.That(martillo.Name, Is.EqualTo("Martillo"));
         Assert.That(martillo.AttackValue, Is.EqualTo(15));
@@ -26,7 +26,7 @@ public class DwarfTest
     public void Test3()     // GetInfo | AddItem | RemoveItem
     {
         Dwarf enano = new Dwarf("Enano", 100);
-        Item martillo = new Item("Martillo", 15, 10);
+        IItem martillo = new IItem("Martillo", 15, 10);
         enano.AddItem(martillo);
         
         string result = enano.GetInfo();
@@ -57,9 +57,9 @@ public class DwarfTest
     public void TestDamage()     // TotalDamage | TotalDefense
     {
         Dwarf enano = new Dwarf("Enano", 100);
-        Item martillo = new Item("Martillo", 10, 3);
-        Item espada = new Item("Espada", 5, 5);
-        Item hacha = new Item("Hacha", 0, 10);
+        IItem martillo = new IItem("Martillo", 10, 3);
+        IItem espada = new IItem("Espada", 5, 5);
+        IItem hacha = new IItem("Hacha", 0, 10);
         
         Assert.That(enano.TotalDamage(), Is.EqualTo(0));
         Assert.That(enano.TotalDefense(), Is.EqualTo(0));

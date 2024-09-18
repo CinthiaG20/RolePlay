@@ -1,6 +1,6 @@
-﻿namespace Library;
+namespace Library;
 
-public class Item
+public class IMagicItem : IItem
 {
     private string name;
     public string Name

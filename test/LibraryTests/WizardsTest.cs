@@ -17,7 +17,7 @@ public class WizardsTest
     [Test]
     public void Test2()     // Item
     {
-        Item baston = new Item("Bastón Mágico", 10, 3);
+        IItem baston = new IItem("Bastón Mágico", 10, 3);
 
         Assert.That(baston.Name, Is.EqualTo("Bastón Mágico"));
         Assert.That(baston.AttackValue, Is.EqualTo(10));
@@ -29,7 +29,7 @@ public class WizardsTest
     {
         SpellTome spellTome = new SpellTome("Tome", 0, 0);
         Wizard mago = new Wizard("Gandalf", 100, spellTome);
-        Item baston = new Item("Bastón Mágico", 10, 3);
+        IItem baston = new IItem("Bastón Mágico", 10, 3);
         mago.AddItem(baston);
         
         string result = mago.GetInfo();
@@ -62,9 +62,9 @@ public class WizardsTest
     {
         SpellTome spellTome = new SpellTome("Tome", 0, 0);
         Wizard mago1 = new Wizard("Sauron", 100, spellTome);
-        Item bastonigneo = new Item("Bastón de Fuego", 10, 3);
-        Item amuleto = new Item("Amuleto mistico", 5, 5);
-        Item capain = new Item("Capa de Sigilo", 0, 10);
+        IItem bastonigneo = new IItem("Bastón de Fuego", 10, 3);
+        IItem amuleto = new IItem("Amuleto mistico", 5, 5);
+        IItem capain = new IItem("Capa de Sigilo", 0, 10);
         
         mago1.AddItem(bastonigneo);
         mago1.AddItem(amuleto);
